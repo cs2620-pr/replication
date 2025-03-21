@@ -11,18 +11,17 @@ from ..chat.chat_pb2 import (
     ListAccountsRequest,
     ListAccountsResponse,
     AccountInfo,
-    SendMessageRequest,
-    SendMessageResponse,
     GetMessagesRequest,
     GetMessagesResponse,
-    DeleteMessagesRequest,
-    DeleteMessagesResponse,
+    SendMessageRequest,
+    SendMessageResponse,
+    MarkConversationAsReadRequest,
+    MarkConversationAsReadResponse,
     Message,
     LogoutRequest,
     LogoutResponse,
-    MarkConversationAsReadRequest,
-    MarkConversationAsReadResponse,
 )
+from ..constants import ErrorMessage
 from .replication_pb2 import (
     HeartbeatRequest,
     HeartbeatResponse,
@@ -216,7 +215,7 @@ class ReplicationServicer(ReplicationServiceServicer):
 
         # Apply the request locally
         try:
-            # Deserialize the request based on operation type
+            # Deserialize the request
             if request.operation == "Login":
                 login_request = LoginRequest.FromString(request.payload)
                 success, message = self.db.verify_user(
@@ -224,7 +223,7 @@ class ReplicationServicer(ReplicationServiceServicer):
                 )
 
                 if not success:
-                    login_response = LoginResponse(success=False, error_message=message)
+                    response = LoginResponse(success=False, error_message=message)
                 else:
                     # Generate session token
                     session_token = str(uuid.uuid4())
@@ -236,7 +235,7 @@ class ReplicationServicer(ReplicationServiceServicer):
                         login_request.username
                     )
 
-                    login_response = LoginResponse(
+                    response = LoginResponse(
                         success=True,
                         error_message="",
                         unread_message_count=unread_count,
@@ -246,29 +245,28 @@ class ReplicationServicer(ReplicationServiceServicer):
                 return ReplicatedResponse(
                     success=True,
                     error_message="",
-                    result=login_response.SerializeToString(),
+                    result=response.SerializeToString(),
                 )
             elif request.operation == "Logout":
                 logout_request = LogoutRequest.FromString(request.payload)
-
                 # Verify session
                 username = self.db.verify_session(logout_request.session_token)
                 if not username:
                     logout_response = LogoutResponse(
                         success=False,
-                        error_message="Invalid session token",
+                        error_message=ErrorMessage.INVALID_SESSION.value,
                     )
                 else:
-                    # Remove user from online users
+                    # Delete session from database
+                    success = self.db.delete_session(logout_request.session_token)
+
+                    # Remove from online users cache
                     if username in self.online_users:
                         del self.online_users[username]
 
-                    # Delete session
-                    self.db.delete_session(logout_request.session_token)
-
                     logout_response = LogoutResponse(
-                        success=True,
-                        error_message="",
+                        success=success,
+                        error_message="" if success else "Failed to logout",
                     )
 
                 return ReplicatedResponse(
@@ -277,20 +275,24 @@ class ReplicationServicer(ReplicationServiceServicer):
                     result=logout_response.SerializeToString(),
                 )
             elif request.operation == "ListAccounts":
-                list_request = ListAccountsRequest.FromString(request.payload)
-
+                list_accounts_request = ListAccountsRequest.FromString(request.payload)
                 # Verify session
-                username = self.db.verify_session(list_request.session_token)
+                username = self.db.verify_session(list_accounts_request.session_token)
                 if not username:
-                    list_response = ListAccountsResponse(
-                        error_message="Invalid session token"
+                    list_accounts_response = ListAccountsResponse(
+                        error_message=ErrorMessage.INVALID_SESSION.value
                     )
                 else:
                     # Get accounts
                     accounts = self.db.list_accounts(
-                        pattern=list_request.pattern if list_request.pattern else None,
-                        limit=list_request.page_size,
-                        offset=list_request.page_size * list_request.page_number,
+                        pattern=(
+                            list_accounts_request.pattern
+                            if list_accounts_request.pattern
+                            else None
+                        ),
+                        limit=list_accounts_request.page_size,
+                        offset=list_accounts_request.page_size
+                        * list_accounts_request.page_number,
                     )
 
                     # Convert to proto format
@@ -303,9 +305,9 @@ class ReplicationServicer(ReplicationServiceServicer):
                             )
                         )
 
-                    list_response = ListAccountsResponse(
+                    list_accounts_response = ListAccountsResponse(
                         accounts=account_infos,
-                        has_more=len(accounts) == list_request.page_size,
+                        has_more=len(accounts) == list_accounts_request.page_size,
                         total_count=len(accounts),
                         error_message="",
                     )
@@ -313,54 +315,20 @@ class ReplicationServicer(ReplicationServiceServicer):
                 return ReplicatedResponse(
                     success=True,
                     error_message="",
-                    result=list_response.SerializeToString(),
-                )
-            elif request.operation == "SendMessage":
-                send_request = SendMessageRequest.FromString(request.payload)
-
-                # Verify session
-                username = self.db.verify_session(send_request.session_token)
-                if not username:
-                    send_response = SendMessageResponse(
-                        success=False,
-                        error_message="Invalid session token",
-                    )
-                else:
-                    # Generate message ID
-                    message_id = str(uuid.uuid4())
-
-                    # Send message
-                    success, message = self.db.send_message(
-                        sender=username,
-                        recipient=send_request.recipient,
-                        content=send_request.content,
-                        message_id=message_id,
-                    )
-
-                    send_response = SendMessageResponse(
-                        success=success,
-                        error_message=message if not success else "",
-                        message_id=message_id if success else "",
-                    )
-
-                return ReplicatedResponse(
-                    success=True,
-                    error_message="",
-                    result=send_response.SerializeToString(),
+                    result=list_accounts_response.SerializeToString(),
                 )
             elif request.operation == "GetMessages":
-                get_request = GetMessagesRequest.FromString(request.payload)
-
+                get_messages_request = GetMessagesRequest.FromString(request.payload)
                 # Verify session
-                username = self.db.verify_session(get_request.session_token)
+                username = self.db.verify_session(get_messages_request.session_token)
                 if not username:
-                    get_response = GetMessagesResponse(
-                        error_message="Invalid session token"
+                    get_messages_response = GetMessagesResponse(
+                        error_message=ErrorMessage.INVALID_SESSION.value
                     )
                 else:
                     # Get messages
                     messages = self.db.get_messages(
-                        username=username, limit=get_request.max_messages
+                        username=username, limit=get_messages_request.max_messages
                     )
 
                     # Convert to proto format
@@ -379,66 +347,56 @@ class ReplicationServicer(ReplicationServiceServicer):
                             )
                         )
 
-                    get_response = GetMessagesResponse(
+                    get_messages_response = GetMessagesResponse(
                         messages=message_protos,
-                        has_more=len(messages) == get_request.max_messages,
+                        has_more=len(messages) == get_messages_request.max_messages,
                         error_message="",
                     )
 
                 return ReplicatedResponse(
                     success=True,
                     error_message="",
-                    result=get_response.SerializeToString(),
+                    result=get_messages_response.SerializeToString(),
                 )
-            elif request.operation == "DeleteMessages":
-                delete_request = DeleteMessagesRequest.FromString(request.payload)
-
-                # Verify session
-                username = self.db.verify_session(delete_request.session_token)
-                if not username:
-                    delete_response = DeleteMessagesResponse(
-                        success=False,
-                        error_message="Invalid session token",
-                    )
-                else:
-                    # Delete messages
-                    success, failed_ids = self.db.delete_messages(
-                        message_ids=list(delete_request.message_ids),
-                        username=username,
+            elif request.operation == "SendMessage":
+                send_message_request = SendMessageRequest.FromString(request.payload)
+                username = self.db.verify_session(send_message_request.session_token)
+                if username:
+                    # Generate message ID for replication
+                    message_id = str(uuid.uuid4())
+                    self.db.send_message(
+                        sender=username,
+                        recipient=send_message_request.recipient,
+                        content=send_message_request.content,
+                        message_id=message_id,
                     )
 
-                    delete_response = DeleteMessagesResponse(
-                        success=success and not failed_ids,
-                        error_message=(
-                            ""
-                            if success and not failed_ids
-                            else "Failed to delete some messages"
-                        ),
-                        failed_message_ids=failed_ids,
+                    send_message_response = SendMessageResponse(
+                        success=True,
+                        error_message="",
+                        message_id=message_id,
                     )
 
                 return ReplicatedResponse(
                     success=True,
                     error_message="",
-                    result=delete_response.SerializeToString(),
+                    result=send_message_response.SerializeToString(),
                 )
             elif request.operation == "MarkConversationAsRead":
                 mark_read_request = MarkConversationAsReadRequest.FromString(
                     request.payload
                 )
-
                 # Verify session
                 username = self.db.verify_session(mark_read_request.session_token)
                 if not username:
                     mark_read_response = MarkConversationAsReadResponse(
                         success=False,
-                        error_message="Invalid session token",
+                        error_message=ErrorMessage.INVALID_SESSION.value,
                     )
                 else:
                     # Mark conversation as read
                     success = self.db.mark_conversation_as_read(
-                        username=username,
-                        other_user=mark_read_request.other_user,
+                        username, mark_read_request.other_user
                     )
 
                     mark_read_response = MarkConversationAsReadResponse(
@@ -461,7 +419,6 @@ class ReplicationServicer(ReplicationServiceServicer):
                     result=request.payload,
                 )
         except Exception as e:
-            logger.error(f"Error handling request: {e}")
             return ReplicatedResponse(
                 success=False,
                 error_message=str(e),
@@ -475,6 +432,47 @@ class ReplicationServicer(ReplicationServiceServicer):
             # Update sequence number
             if request.sequence_number > self.current_sequence:
                 self.current_sequence = request.sequence_number
+
+            # Apply the request locally
+            if request.operation == "Login":
+                login_request = LoginRequest.FromString(request.payload)
+                success, message = self.db.verify_user(
+                    login_request.username, login_request.password
+                )
+                if success:
+                    session_token = str(uuid.uuid4())
+                    self.db.create_session(login_request.username, session_token)
+                    self.online_users[login_request.username] = session_token
+            elif request.operation == "Logout":
+                logout_request = LogoutRequest.FromString(request.payload)
+                username = self.db.verify_session(logout_request.session_token)
+                if username:
+                    self.db.delete_session(logout_request.session_token)
+                    self.online_users.pop(username, None)
+            elif request.operation == "SendMessage":
+                send_message_request = SendMessageRequest.FromString(request.payload)
+                username = self.db.verify_session(send_message_request.session_token)
+                if username:
+                    # For replication, we'll generate a new message ID
+                    message_id = str(uuid.uuid4())
+                    self.db.send_message(
+                        sender=username,
+                        recipient=send_message_request.recipient,
+                        content=send_message_request.content,
+                        message_id=message_id,
+                    )
+            elif request.operation == "MarkConversationAsRead":
+                mark_read_request = MarkConversationAsReadRequest.FromString(
+                    request.payload
+                )
+                username = self.db.verify_session(mark_read_request.session_token)
+                if username:
+                    self.db.mark_conversation_as_read(
+                        username, mark_read_request.other_user
+                    )
+
+            # Update last applied sequence
+            self.last_applied_sequence = request.sequence_number
 
             # Return acknowledgment
             return Ack(
@@ -551,16 +549,72 @@ class ReplicationServicer(ReplicationServiceServicer):
             last_heartbeat=int(time.time()),
         )
 
-        # If we're the leader, send our current state
+        # If we're the leader, send our current state and ensure the new replica knows we're the leader
         if self.is_leader:
+            # Send heartbeat to the new replica to establish leadership
+            try:
+                channel = grpc.insecure_channel(request.address)
+                stub = ReplicationServiceStub(channel)
+                heartbeat_request = HeartbeatRequest(
+                    coordinator_id=self.replica_id,
+                    timestamp=int(time.time()),
+                )
+                stub.Heartbeat(heartbeat_request)
+                channel.close()
+            except Exception as e:
+                logger.error(f"Failed to send heartbeat to new replica: {e}")
+
             return JoinClusterResponse(
                 success=True,
                 error_message="",
                 current_sequence=self.current_sequence,
+                missing_operations=[],  # No missing operations for new replica
             )
 
-        logger.info(f"Replica {request.replica_id} joined the cluster")
-        return JoinClusterResponse(success=True, error_message="")
+        # If we're not the leader, try to find the leader
+        leader_found = False
+        for replica_id, replica in self.replicas.items():
+            try:
+                channel = grpc.insecure_channel(replica.address)
+                stub = ReplicationServiceStub(channel)
+                find_leader_request = FindLeaderRequest()
+                response = stub.FindLeader(find_leader_request)
+                channel.close()
+
+                if response.success:
+                    # Forward the leader information to the new replica
+                    try:
+                        channel = grpc.insecure_channel(request.address)
+                        stub = ReplicationServiceStub(channel)
+                        heartbeat_request = HeartbeatRequest(
+                            coordinator_id=response.leader_id,
+                            timestamp=int(time.time()),
+                        )
+                        stub.Heartbeat(heartbeat_request)
+                        channel.close()
+                    except Exception as e:
+                        logger.error(f"Failed to forward heartbeat to new replica: {e}")
+
+                    return JoinClusterResponse(
+                        success=True,
+                        error_message="",
+                        current_sequence=self.current_sequence,
+                        missing_operations=[],  # No missing operations for new replica
+                    )
+            except Exception as e:
+                logger.error(f"Failed to find leader through {replica_id}: {e}")
+
+        # If we couldn't find a leader, start a new election
+        logger.info("No leader found, starting new election")
+        self.start_election()
+
+        # Return our current state
+        return JoinClusterResponse(
+            success=True,
+            error_message="",
+            current_sequence=self.current_sequence,
+            missing_operations=[],  # No missing operations for new replica
+        )
 
     def FindLeader(
         self, request: FindLeaderRequest, context: grpc.ServicerContext
@@ -584,7 +638,12 @@ class ReplicationServicer(ReplicationServiceServicer):
                 channel.close()
 
                 if response.success:
-                    return response
+                    return FindLeaderResponse(
+                        success=response.success,
+                        error_message=response.error_message,
+                        leader_id=response.leader_id,
+                        leader_address=response.leader_address,
+                    )
             except Exception as e:
                 logger.error(f"Failed to find leader through {replica_id}: {e}")
 
