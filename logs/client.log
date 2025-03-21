@@ -1082,3 +1082,9 @@
 2025-02-26 23:33:22,802 - client - INFO - Received 32 total messages from server
 2025-02-26 23:33:22,802 - client - INFO - Filtered to 0 messages for conversation with dliu
 2025-02-26 23:33:22,802 - client - INFO - No changes in messages, skipping display update
+2025-03-21 22:10:42,501 - client - WARNING - Failed to send message to mzcassim: hey mo
+2025-03-21 22:15:27,808 - client - ERROR - Error updating messages: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50051: Failed to connect to remote host: connect: Connection refused (61)"
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_message:"failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50051: Failed to connect to remote host: connect: Connection refused (61)", grpc_status:14, created_time:"2025-03-21T22:15:27.808622+01:00"}"
+>

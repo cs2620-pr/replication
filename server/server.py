@@ -31,8 +31,11 @@ from .chat.chat_pb2 import (
     MarkConversationAsReadResponse,
 )
 from .chat.chat_pb2_grpc import ChatServiceServicer, add_ChatServiceServicer_to_server
+from .replication.replication_pb2_grpc import add_ReplicationServiceServicer_to_server
 from .database import ChatDatabase  # type: ignore
 from .constants import ErrorMessage, SuccessMessage
+from .replicated_chat import ReplicatedChatServicer
+from .replication import ReplicationServicer
 
 # Create logs directory if it doesn't exist
 log_dir = "logs"
@@ -469,83 +472,60 @@ def serve(
     max_workers: int = 10,
     db_path: str = "chat.db",
     enable_logging: bool = False,
+    replica_id: Optional[str] = None,
 ) -> None:
-    """Start the gRPC server."""
+    """Start the gRPC server with replication support."""
+    if replica_id is None:
+        replica_id = f"replica_{uuid.uuid4().hex[:8]}"
+
+    # Create server
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=max_workers))
-    add_ChatServiceServicer_to_server(ChatServicer(db_path, enable_logging), server)
-    server_address = f"{host}:{port}"
+
+    # Add services
+    chat_servicer = ReplicatedChatServicer(replica_id, f"{host}:{port}", db_path)
+    replication_servicer = ReplicationServicer(replica_id, f"{host}:{port}", db_path)
+
+    add_ChatServiceServicer_to_server(chat_servicer, server)
+    add_ReplicationServiceServicer_to_server(replication_servicer, server)
+
+    # Start server
+    server.add_insecure_port(f"{host}:{port}")
+    server.start()
+    logger.info(f"Server started on {host}:{port} with replica ID: {replica_id}")
 
     try:
-        # Try to bind to the specified port
-        server.add_insecure_port(server_address)
-        server.start()
-        logger.info(f"Server started on {server_address}")
-
-        try:
-            server.wait_for_termination()
-        except KeyboardInterrupt:
-            logger.info("Shutting down server...")
-            server.stop(0)
-    except Exception as e:
-        logger.error(f"Failed to start server on {server_address}: {str(e)}")
-        print(f"ERROR: Failed to start server on {server_address}: {str(e)}")
-
-        # Check for common errors and provide helpful messages
-        if "address already in use" in str(e).lower():
-            print(
-                f"The port {port} is already in use. Try a different port with --port option."
-            )
-        elif "cannot assign requested address" in str(e).lower():
-            print(f"Cannot bind to address {host}. Make sure the host is valid.")
-
-        # Exit with error code
-        sys.exit(1)
+        while True:
+            time.sleep(86400)
+    except KeyboardInterrupt:
+        server.stop(0)
 
 
-if __name__ == "__main__":
-    # Parse command line arguments
-    parser = argparse.ArgumentParser(description="Chat Server")
+def main() -> None:
+    """Main entry point for the server."""
+    parser = argparse.ArgumentParser(description="Start the chat server")
+    parser.add_argument("--host", default="localhost", help="Host to bind to")
+    parser.add_argument("--port", type=int, default=50051, help="Port to bind to")
     parser.add_argument(
-        "--host", default="localhost", help="Host address to bind the server to"
+        "--max-workers", type=int, default=10, help="Maximum number of worker threads"
     )
     parser.add_argument(
-        "--port", type=int, default=8000, help="Port number to listen on"
+        "--db-path", default="chat.db", help="Path to the SQLite database"
     )
     parser.add_argument(
-        "--db-path", default="chat.db", help="Path to the SQLite database file"
+        "--enable-logging", action="store_true", help="Enable protocol logging"
     )
-    parser.add_argument(
-        "--enable-logging", action="store_true", help="Enable protocol metrics logging"
-    )
+    parser.add_argument("--replica-id", help="Unique ID for this replica")
 
     args = parser.parse_args()
-
-    # Check if we're running under pytest (which sets PYTEST_CURRENT_TEST env var)
-    is_test_environment = "PYTEST_CURRENT_TEST" in os.environ
-    # If we're in a test environment, automatically enable logging
-    if is_test_environment and not args.enable_logging:
-        args.enable_logging = True
-        logger.info(
-            "Test environment detected, automatically enabling protocol metrics logging"
-        )
-
-    # Validate port number
-    if args.port < 1 or args.port > 65535:
-        print(
-            f"ERROR: Invalid port number {args.port}. Port must be between 1 and 65535."
-        )
-        sys.exit(1)
-
-    # Print startup message
-    print(f"Starting server on {args.host}:{args.port}...")
-    print(f"Using database: {args.db_path}")
-    if args.enable_logging:
-        print("Protocol metrics logging: ENABLED")
-    print("Press Ctrl+C to stop the server")
-
     serve(
         host=args.host,
         port=args.port,
+        max_workers=args.max_workers,
         db_path=args.db_path,
         enable_logging=args.enable_logging,
+        replica_id=args.replica_id,
     )
+
+
+if __name__ == "__main__":
+    main()

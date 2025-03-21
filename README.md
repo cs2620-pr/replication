@@ -26,41 +26,46 @@ This repository contains a chat application built using gRPC for client-server c
 ## Installation
 
 1. Clone the repository:
+
    ```
    git clone https://github.com/cs2620-pr/wire-protocols-grpc.git
    cd wire-protocols-grpc
    ```
 
 2. Create a virtual environment (optional but recommended):
+
    ```
    python -m venv venv
-   
+
    # On Windows
    venv\Scripts\activate
-   
+
    # On macOS/Linux
    source venv/bin/activate
    ```
 
 3. Install the required dependencies using the provided requirements.txt file:
+
    ```
    pip install -r requirements.txt
    ```
 
    This will install all necessary packages including:
+
    - grpcio and grpcio-tools for gRPC functionality
    - protobuf for Protocol Buffers
    - bcrypt for password hashing
    - pytest for running tests
 
 4. Compile the proto file to generate proto stubs:
-    ```
-    # On macOS/Linux
-    ./compile_proto.sh
-    
-    # On Windows
-    python -m grpc_tools.protoc -I./protos --python_out=. --grpc_python_out=. ./protos/chat.proto
-    ```
+
+   ```
+   # On macOS/Linux
+   ./compile_proto.sh
+
+   # On Windows
+   python -m grpc_tools.protoc -I./protos --python_out=. --grpc_python_out=. ./protos/chat.proto
+   ```
 
 ## Project Structure
 
@@ -85,21 +90,21 @@ wire-protocols-grpc/
 
 This application has been implemented using three different protocols:
 
-| Protocol | Avg Size (bytes) | Pros | Cons |
-|----------|------------------|------|------|
-| gRPC | 534.53 | Auto-generated code, strong typing, HTTP/2 benefits | Larger message size (in our implementation) |
-| JSON | 238.00 | Human-readable, widely supported | Manual parsing/validation |
-| Custom Wire | 53.82 | Most bandwidth efficient | Hard to debug, manual implementation |
+| Protocol    | Avg Size (bytes) | Pros                                                | Cons                                        |
+| ----------- | ---------------- | --------------------------------------------------- | ------------------------------------------- |
+| gRPC        | 534.53           | Auto-generated code, strong typing, HTTP/2 benefits | Larger message size (in our implementation) |
+| JSON        | 238.00           | Human-readable, widely supported                    | Manual parsing/validation                   |
+| Custom Wire | 53.82            | Most bandwidth efficient                            | Hard to debug, manual implementation        |
 
 ### Operation-Specific Sizes
 
-| Operation | gRPC Avg Size (bytes) | JSON Avg Size (bytes) | CustomWire Avg Size (bytes) |
-|-----------|-------------------|-------------------|---------------------|
-| GetMessages | 880.71 | 231.48 | 49.02 |
-| ListAccounts | 51.14 | - | - |
-| SendMessage | 48.96 | 242.11 | 63.40 |
-| Login | 23.48 | 244.19 | 67.88 |
-| Logout | 20.00 | 233.28 | 49.24 |
+| Operation    | gRPC Avg Size (bytes) | JSON Avg Size (bytes) | CustomWire Avg Size (bytes) |
+| ------------ | --------------------- | --------------------- | --------------------------- |
+| GetMessages  | 880.71                | 231.48                | 49.02                       |
+| ListAccounts | 51.14                 | -                     | -                           |
+| SendMessage  | 48.96                 | 242.11                | 63.40                       |
+| Login        | 23.48                 | 244.19                | 67.88                       |
+| Logout       | 20.00                 | 233.28                | 49.24                       |
 
 Note: While gRPC/Protobuf is typically more efficient than JSON, our current implementation retrieves all messages at once in GetMessages operations, leading to larger payload sizes. For operations like SendMessage and Login, gRPC is more efficient than JSON.
 
@@ -124,6 +129,7 @@ The server will start on localhost:8000 by default and create a SQLite database 
 - `--log-level`: Set logging level (default: INFO)
 
 Example with custom settings:
+
 ```
 python -m server.server --host 0.0.0.0 --port 9000 --db-path custom_database.db --enable-logging --log-level DEBUG
 ```
@@ -147,6 +153,7 @@ The client will attempt to connect to a server running on localhost:8000 by defa
 - `--poll-interval`: Set polling interval in seconds (default: 2.0)
 
 Example with custom settings:
+
 ```
 python -m client.gui_client --host 192.168.1.100 --port 9000 --enable-logging --poll-interval 1.0
 ```
@@ -207,6 +214,7 @@ python -m pytest --cov=server --cov=client
 ## Performance Considerations
 
 - **Bandwidth Usage**: Our implementation of gRPC uses more bandwidth than both JSON and custom wire protocols, primarily due to how we retrieve all messages at once. For 1 million messages:
+
   - CustomWireProtocol: 51.3 MB
   - JSONProtocol: 227.0 MB
   - gRPC: 534.5 MB

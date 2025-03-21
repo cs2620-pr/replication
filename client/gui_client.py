@@ -772,7 +772,8 @@ class ChatWidget(QWidget, GrpcLoggerMixin):
                 # Only count messages where:
                 # 1. Current user is the recipient
                 # 2. Message is unread
-                if msg.recipient == self.username and msg.unread:
+                # 3. Message is not deleted
+                if msg.recipient == self.username and msg.unread and not msg.deleted:
                     sender = msg.sender
                     if sender not in unread_counts:
                         unread_counts[sender] = 0
@@ -782,6 +783,7 @@ class ChatWidget(QWidget, GrpcLoggerMixin):
             if unread_counts != self.unread_counts:
                 self.unread_counts = unread_counts
                 self._refresh_users_list()
+                print(f"Updated unread counts: {unread_counts}")
 
         except grpc.RpcError as e:
             print(f"Error updating unread counts: {e}")
@@ -1211,6 +1213,10 @@ class ChatWidget(QWidget, GrpcLoggerMixin):
                 self.unread_counts[other_user] = 0
                 self._refresh_users_list()
                 print(f"Marked all messages from {other_user} as read")
+
+            # If this is the currently selected user, update the messages display
+            if self.selected_user == other_user:
+                self.update_messages()
 
         except grpc.RpcError as e:
             print(f"Error marking conversation as read: {e}")

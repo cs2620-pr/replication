@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+package replication;
+
+// Replication service for handling replicated requests and coordination
+service ReplicationService {
+  // Client-facing RPCs (only handled by coordinator)
+  rpc HandleClientRequest(ReplicatedRequest) returns (ReplicatedResponse) {}
+  rpc FindLeader(FindLeaderRequest) returns (FindLeaderResponse) {}
+  
+  // Replica-to-replica RPCs
+  rpc ReplicateRequest(ReplicatedRequest) returns (Ack) {}
+  rpc Heartbeat(HeartbeatRequest) returns (HeartbeatResponse) {}
+  rpc JoinCluster(JoinClusterRequest) returns (JoinClusterResponse) {}
+  rpc RequestMissingOps(RequestMissingOpsRequest) returns (RequestMissingOpsResponse) {}
+  rpc ElectLeader(ElectLeaderRequest) returns (ElectLeaderResponse) {}
+}
+
+// Information about a replica in the cluster
+message ReplicaInfo {
+  string replica_id = 1;
+  string address = 2;
+  string role = 3;
+  int64 current_sequence = 4;
+  int64 last_applied_sequence = 5;
+  bool is_leader = 6;
+  int64 last_heartbeat = 7;
+}
+
+// Wrapper for all client requests that need replication
+message ReplicatedRequest {
+  int64 sequence_number = 1;
+  string operation = 2;  // Name of the original gRPC method
+  bytes payload = 3;     // Serialized original request
+  string coordinator_id = 4;
+  int64 timestamp = 5;
+}
+
+message ReplicatedResponse {
+  bool success = 1;
+  string error_message = 2;
+  bytes result = 3;      // Serialized original response
+}
+
+message Ack {
+  int64 sequence_number = 1;
+  string replica_id = 2;
+  bool success = 3;
+  string error_message = 4;
+}
+
+message HeartbeatRequest {
+  string coordinator_id = 1;
+  int64 sequence_number = 2;
+  int64 timestamp = 3;
+}
+
+message HeartbeatResponse {
+  bool success = 1;
+  string error_message = 2;
+  string replica_id = 3;
+  string role = 4;
+  int64 current_sequence = 5;
+  int64 last_applied_sequence = 6;
+  bool is_leader = 7;
+}
+
+message JoinClusterRequest {
+  string replica_id = 1;
+  string address = 2;
+  int64 last_applied_sequence = 3;
+}
+
+message JoinClusterResponse {
+  bool success = 1;
+  string error_message = 2;
+  repeated ReplicatedRequest missing_operations = 3;
+  int64 current_sequence = 4;
+}
+
+message RequestMissingOpsRequest {
+  string replica_id = 1;
+  int64 from_sequence = 2;
+  int64 to_sequence = 3;
+}
+
+message RequestMissingOpsResponse {
+  bool success = 1;
+  string error_message = 2;
+  repeated ReplicatedRequest operations = 3;
+}
+
+message ElectLeaderRequest {
+  string candidate_id = 1;
+  int64 last_applied_sequence = 2;
+  int64 timestamp = 3;
+}
+
+message ElectLeaderResponse {
+  bool success = 1;
+  string error_message = 2;
+  string elected_leader_id = 3;
+}
+
+// Find leader request/response
+message FindLeaderRequest {
+  string client_id = 1;
+}
+
+message FindLeaderResponse {
+  bool success = 1;
+  string error_message = 2;
+  string leader_id = 3;
+  string leader_address = 4;
+} 

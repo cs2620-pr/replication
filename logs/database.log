@@ -1546,3 +1546,143 @@
 2025-02-26 23:33:22,884 - INFO - GRPC Incoming - Logout - Size: 38 bytes
 2025-02-26 23:33:22,884 - INFO - Logout attempt for user: pr28416
 2025-02-26 23:33:22,886 - INFO - GRPC Outgoing - Logout - Size: 2 bytes | Success: True
+2025-03-21 21:44:04,041 - INFO - Server started on localhost:50051 with replica ID: replica_1
+2025-03-21 21:48:32,812 - ERROR - Exception calling application: Method not implemented!
+Traceback (most recent call last):
+  File "/Users/pranavramesh/Developer/cs2620/replication/venv/lib/python3.12/site-packages/grpc/_server.py", line 610, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replicated_chat.py", line 91, in ListAccounts
+    return self._handle_request("ListAccounts", request, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replicated_chat.py", line 59, in _handle_request
+    response = self.replication_service.HandleClientRequest(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replication/replication_pb2_grpc.py", line 79, in HandleClientRequest
+    raise NotImplementedError('Method not implemented!')
+NotImplementedError: Method not implemented!
+2025-03-21 21:48:56,213 - ERROR - Exception calling application: Method not implemented!
+Traceback (most recent call last):
+  File "/Users/pranavramesh/Developer/cs2620/replication/venv/lib/python3.12/site-packages/grpc/_server.py", line 610, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replicated_chat.py", line 91, in ListAccounts
+    return self._handle_request("ListAccounts", request, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replicated_chat.py", line 59, in _handle_request
+    response = self.replication_service.HandleClientRequest(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replication/replication_pb2_grpc.py", line 79, in HandleClientRequest
+    raise NotImplementedError('Method not implemented!')
+NotImplementedError: Method not implemented!
+2025-03-21 21:50:13,780 - ERROR - Exception calling application: Method not implemented!
+Traceback (most recent call last):
+  File "/Users/pranavramesh/Developer/cs2620/replication/venv/lib/python3.12/site-packages/grpc/_server.py", line 610, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replicated_chat.py", line 91, in ListAccounts
+    return self._handle_request("ListAccounts", request, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replicated_chat.py", line 59, in _handle_request
+    response = self.replication_service.HandleClientRequest(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replication/replication_pb2_grpc.py", line 79, in HandleClientRequest
+    raise NotImplementedError('Method not implemented!')
+NotImplementedError: Method not implemented!
+2025-03-21 21:51:23,516 - ERROR - Exception calling application: Method not implemented!
+Traceback (most recent call last):
+  File "/Users/pranavramesh/Developer/cs2620/replication/venv/lib/python3.12/site-packages/grpc/_server.py", line 610, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replicated_chat.py", line 91, in ListAccounts
+    return self._handle_request("ListAccounts", request, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replicated_chat.py", line 59, in _handle_request
+    response = self.replication_service.HandleClientRequest(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replication/replication_pb2_grpc.py", line 79, in HandleClientRequest
+    raise NotImplementedError('Method not implemented!')
+NotImplementedError: Method not implemented!
+2025-03-21 21:51:41,421 - INFO - Server started on localhost:50051 with replica ID: replica_1
+2025-03-21 21:51:46,172 - ERROR - Exception calling application: Protocol message ListAccountsResponse has no "success" field.
+Traceback (most recent call last):
+  File "/Users/pranavramesh/Developer/cs2620/replication/venv/lib/python3.12/site-packages/grpc/_server.py", line 610, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replicated_chat.py", line 91, in ListAccounts
+    return self._handle_request("ListAccounts", request, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replicated_chat.py", line 66, in _handle_request
+    error_response = response_type(
+                     ^^^^^^^^^^^^^^
+ValueError: Protocol message ListAccountsResponse has no "success" field.
+2025-03-21 21:55:00,429 - ERROR - Exception calling application: Protocol message ListAccountsResponse has no "success" field.
+Traceback (most recent call last):
+  File "/Users/pranavramesh/Developer/cs2620/replication/venv/lib/python3.12/site-packages/grpc/_server.py", line 610, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replicated_chat.py", line 91, in ListAccounts
+    return self._handle_request("Login", request, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replicated_chat.py", line 66, in _handle_request
+ValueError: Protocol message ListAccountsResponse has no "success" field.
+2025-03-21 21:55:15,097 - INFO - Server started on localhost:50051 with replica ID: replica_1
+2025-03-21 21:55:38,915 - INFO - Server started on localhost:50052 with replica ID: replica_2
+2025-03-21 21:58:21,418 - INFO - Server started on localhost:50051 with replica ID: replica_1
+2025-03-21 21:58:23,444 - INFO - Starting leader election from replica replica_1
+2025-03-21 21:58:23,444 - INFO - Replica replica_1 won the election with 1/1 votes
+2025-03-21 21:58:35,885 - ERROR - Exception calling application: Protocol message ListAccountsResponse has no "success" field.
+Traceback (most recent call last):
+  File "/Users/pranavramesh/Developer/cs2620/replication/venv/lib/python3.12/site-packages/grpc/_server.py", line 610, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replicated_chat.py", line 91, in ListAccounts
+    return self._handle_request("ListAccounts", request, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pranavramesh/Developer/cs2620/replication/server/replicated_chat.py", line 66, in _handle_request
+    error_response = response_type(
+                     ^^^^^^^^^^^^^^
+ValueError: Protocol message ListAccountsResponse has no "success" field.
+2025-03-21 22:00:11,588 - INFO - Server started on localhost:50051 with replica ID: replica_1
+2025-03-21 22:00:13,575 - INFO - Starting leader election from replica replica_1
+2025-03-21 22:00:13,575 - INFO - Replica replica_1 won the election with 1/1 votes
+2025-03-21 22:04:26,586 - INFO - Server started on localhost:50051 with replica ID: replica_1
+2025-03-21 22:04:28,611 - INFO - Replica replica_1 starting election due to timeout
+2025-03-21 22:04:28,611 - INFO - Starting leader election from replica replica_1
+2025-03-21 22:04:28,611 - INFO - Replica replica_1 won the election with 1/1 votes
+2025-03-21 22:05:25,942 - INFO - Server started on localhost:50051 with replica ID: replica_1
+2025-03-21 22:05:27,927 - INFO - Replica replica_1 starting election due to timeout
+2025-03-21 22:05:27,927 - INFO - Starting leader election from replica replica_1
+2025-03-21 22:05:27,928 - INFO - Replica replica_1 won the election with 2/2 votes
+2025-03-21 22:08:29,104 - INFO - Server started on localhost:50051 with replica ID: replica_1
+2025-03-21 22:08:31,071 - INFO - Replica replica_1 starting election due to timeout
+2025-03-21 22:08:31,071 - INFO - Starting leader election from replica replica_1
+2025-03-21 22:08:31,072 - INFO - Replica replica_1 won the election with 2/2 votes
+2025-03-21 22:08:35,191 - INFO - Server started on localhost:50051 with replica ID: replica_1
+2025-03-21 22:08:37,165 - INFO - Replica replica_1 starting election due to timeout
+2025-03-21 22:08:37,165 - INFO - Starting leader election from replica replica_1
+2025-03-21 22:08:37,167 - INFO - Replica replica_1 won the election with 2/2 votes
+2025-03-21 22:10:18,668 - INFO - Server started on localhost:50051 with replica ID: replica_1
+2025-03-21 22:10:20,660 - INFO - Replica replica_1 starting election due to timeout
+2025-03-21 22:10:20,660 - INFO - Starting leader election from replica replica_1
+2025-03-21 22:10:20,661 - INFO - Replica replica_1 won the election with 2/2 votes
+2025-03-21 22:15:36,268 - INFO - Server started on localhost:50051 with replica ID: replica_1
+2025-03-21 22:15:38,259 - INFO - Replica replica_1 starting election due to timeout
+2025-03-21 22:15:38,259 - INFO - Starting leader election from replica replica_1
+2025-03-21 22:15:38,260 - INFO - Replica replica_1 won the election with 2/2 votes
+2025-03-21 22:16:03,562 - INFO - Storing message | Sender: pr28416 -> Recipient: mzcassim | Message Size: 5 bytes | Message ID: 986d29a9-7e1f-454d-9e86-d8c6e2de2f9a
+2025-03-21 22:16:03,564 - INFO - Message stored successfully | Message ID: 986d29a9-7e1f-454d-9e86-d8c6e2de2f9a
+2025-03-21 22:16:06,128 - INFO - Storing message | Sender: pr28416 -> Recipient: mzcassim | Message Size: 17 bytes | Message ID: 16c56f3f-1203-4b63-8d9c-c47db11f79ee
+2025-03-21 22:16:06,130 - INFO - Message stored successfully | Message ID: 16c56f3f-1203-4b63-8d9c-c47db11f79ee
+2025-03-21 22:16:44,109 - INFO - Storing message | Sender: mzcassim -> Recipient: pr28416 | Message Size: 8 bytes | Message ID: d33b877a-8080-490e-936c-9a6c3d2768e2
+2025-03-21 22:16:44,110 - INFO - Message stored successfully | Message ID: d33b877a-8080-490e-936c-9a6c3d2768e2
+2025-03-21 22:17:12,966 - INFO - Storing message | Sender: mzcassim -> Recipient: pr28416 | Message Size: 4 bytes | Message ID: a3f7b53b-f5dc-4879-8127-a61fb6c5247a
+2025-03-21 22:17:12,968 - INFO - Message stored successfully | Message ID: a3f7b53b-f5dc-4879-8127-a61fb6c5247a
+2025-03-21 22:19:35,256 - INFO - Server started on localhost:50051 with replica ID: replica_1
+2025-03-21 22:19:37,261 - INFO - Replica replica_1 starting election due to timeout
+2025-03-21 22:19:37,261 - INFO - Starting leader election from replica replica_1
+2025-03-21 22:19:37,263 - INFO - Replica replica_1 won the election with 2/2 votes
+2025-03-21 22:20:13,852 - INFO - Storing message | Sender: mzcassim -> Recipient: pr28416 | Message Size: 2 bytes | Message ID: d6fe78e5-78b8-4951-9500-53c557a70567
+2025-03-21 22:20:13,853 - INFO - Message stored successfully | Message ID: d6fe78e5-78b8-4951-9500-53c557a70567
+2025-03-21 22:20:19,944 - INFO - Storing message | Sender: mzcassim -> Recipient: pr28416 | Message Size: 2 bytes | Message ID: bfca11aa-ecae-4501-bb50-6281dc69821a
+2025-03-21 22:20:19,945 - INFO - Message stored successfully | Message ID: bfca11aa-ecae-4501-bb50-6281dc69821a
