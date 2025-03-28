@@ -20,6 +20,26 @@ service DataService {
   rpc Get (GetRequest) returns (GetResponse);
 }
 
+// New service for messaging functionality
+service MessageService {
+  // User registration and account management
+  rpc Register (RegisterRequest) returns (RegisterResponse);
+  rpc Login (LoginRequest) returns (LoginResponse);
+  rpc Logout (LogoutRequest) returns (LogoutResponse);
+  rpc DeleteAccount (DeleteAccountRequest) returns (DeleteAccountResponse);
+  
+  // Message handling
+  rpc SendMessage (SendMessageRequest) returns (SendMessageResponse);
+  rpc GetMessages (GetMessagesRequest) returns (GetMessagesResponse);
+  rpc DeleteMessage (DeleteMessageRequest) returns (DeleteMessageResponse);
+  rpc MarkMessageRead (MarkMessageReadRequest) returns (MarkMessageReadResponse);
+  
+  // User status and management
+  rpc GetAllUsers (GetAllUsersRequest) returns (GetAllUsersResponse);
+  rpc GetOnlineUsers (GetOnlineUsersRequest) returns (GetOnlineUsersResponse);
+  rpc GetUnreadCounts (GetUnreadCountsRequest) returns (GetUnreadCountsResponse);
+}
+
 // Monitoring and health check service
 service MonitoringService {
   // Check if the node is healthy and serving
@@ -150,4 +170,158 @@ message ClusterStatusResponse {
   int32 total_nodes = 3;            // Total number of nodes in the cluster
   int32 healthy_nodes = 4;          // Number of healthy nodes
   repeated NodeStatusResponse node_details = 5;  // Details of all nodes (if requested)
+}
+
+// Message definitions for the messaging application
+
+// User registration
+message RegisterRequest {
+  string username = 1;
+  string password = 2;
+  string display_name = 3;
+}
+
+message RegisterResponse {
+  bool success = 1;
+  string message = 2;
+  string user_id = 3;  // Only set if successful
+}
+
+// User login
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  bool success = 1;
+  string message = 2;
+  string session_token = 3;  // Token for authentication
+  string user_id = 4;        // User ID
+}
+
+// User logout
+message LogoutRequest {
+  string session_token = 1;
+}
+
+message LogoutResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Delete account
+message DeleteAccountRequest {
+  string session_token = 1;
+  string password = 2;  // Confirm with password
+}
+
+message DeleteAccountResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// User message definition
+message Message {
+  string message_id = 1;
+  string sender_id = 2;
+  string receiver_id = 3;
+  string content = 4;
+  int64 timestamp = 5;
+  bool read = 6;
+}
+
+// Send a message
+message SendMessageRequest {
+  string session_token = 1;
+  string receiver_id = 2;
+  string content = 3;
+}
+
+message SendMessageResponse {
+  bool success = 1;
+  string message = 2;
+  string message_id = 3;  // ID of the sent message
+}
+
+// Get messages
+message GetMessagesRequest {
+  string session_token = 1;
+  string other_user_id = 2;  // Get conversation with this user
+  int32 limit = 3;           // Max number of messages to return
+  int64 before_timestamp = 4; // Get messages before this time (0 for most recent)
+}
+
+message GetMessagesResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Message messages = 3;
+}
+
+// Delete a message
+message DeleteMessageRequest {
+  string session_token = 1;
+  string message_id = 2;
+}
+
+message DeleteMessageResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Mark message as read
+message MarkMessageReadRequest {
+  string session_token = 1;
+  string message_id = 2;
+}
+
+message MarkMessageReadResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// User information
+message User {
+  string user_id = 1;
+  string username = 2;
+  string display_name = 3;
+  bool online = 4;
+}
+
+// Get all users
+message GetAllUsersRequest {
+  string session_token = 1;
+}
+
+message GetAllUsersResponse {
+  bool success = 1;
+  string message = 2;
+  repeated User users = 3;
+}
+
+// Get online users
+message GetOnlineUsersRequest {
+  string session_token = 1;
+}
+
+message GetOnlineUsersResponse {
+  bool success = 1;
+  string message = 2;
+  repeated User users = 3;
+}
+
+// Get unread message counts
+message UserUnreadCount {
+  string user_id = 1;
+  int32 count = 2;
+}
+
+message GetUnreadCountsRequest {
+  string session_token = 1;
+}
+
+message GetUnreadCountsResponse {
+  bool success = 1;
+  string message = 2;
+  repeated UserUnreadCount unread_counts = 3;
 }

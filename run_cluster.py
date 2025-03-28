@@ -16,8 +16,11 @@ def load_config(config_path: str) -> Dict:
 
 def start_node(node_id: int, config_path: str) -> subprocess.Popen:
     """Start a single Raft node"""
+    # Get the path to the virtual environment Python interpreter
+    venv_python = os.path.join(os.path.dirname(os.path.abspath(__file__)), "venv", "bin", "python")
+    
     cmd = [
-        'python', 'server.py',
+        venv_python, 'server.py',
         '--id', str(node_id),
         '--config', config_path
     ]

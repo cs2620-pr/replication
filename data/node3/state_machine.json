@@ -11,5 +11,8 @@
   "ppl": "rich",
   "a": "2",
   "b": "3",
-  "c": "3"
+  "c": "3",
+  "users": "{}",
+  "messages": "{}",
+  "online_users": "[]"
 }

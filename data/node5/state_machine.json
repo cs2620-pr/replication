@@ -3,5 +3,8 @@
   "fruit": "apple",
   "status": "after_leader_failure",
   "_find_leader": "ping",
-  "temperature": "25"
+  "temperature": "25",
+  "users": "{}",
+  "messages": "{}",
+  "online_users": "[]"
 }

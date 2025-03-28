@@ -2,3 +2,12 @@ venv/
 __pycache__/
 .mypy_cache/
 generated/
+
+logs/
+data/
+*.log
+*.pyc
+.DS_Store
+.env
+.vscode/
+.idea/

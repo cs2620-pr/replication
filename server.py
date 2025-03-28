@@ -9,6 +9,7 @@ from concurrent import futures
 import grpc
 
 from raft_node import RaftNode
+from message_service import MessageService
 from generated import replication_pb2
 from generated import replication_pb2_grpc
 
@@ -36,6 +37,9 @@ def run_server(node_id, config_path):
         logger.error(f"Node {node_id} not found in configuration")
         return
     
+    # Create message service
+    message_service = MessageService(node)
+    
     # Create gRPC server
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     
@@ -43,6 +47,7 @@ def run_server(node_id, config_path):
     replication_pb2_grpc.add_NodeCommunicationServicer_to_server(node, server)
     replication_pb2_grpc.add_DataServiceServicer_to_server(node, server)
     replication_pb2_grpc.add_MonitoringServiceServicer_to_server(node, server)
+    replication_pb2_grpc.add_MessageServiceServicer_to_server(message_service, server)
     
     # Start server
     server_address = f"{host}:{port}"
