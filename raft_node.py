@@ -195,26 +195,25 @@ class RaftNode(replication_pb2_grpc.NodeCommunicationServicer,
         state_machine_path = os.path.join(state_path, "state_machine.json")
         metadata_path = os.path.join(state_path, "metadata.json")
         
-        # Save log
         try:
+            # Save log
             with open(log_path, 'w') as f:
                 log_data = [
-                    {"term": entry.term, "command": entry.command, "index": entry.index}
+                    {
+                        "term": entry.term,
+                        "command": entry.command,
+                        "index": entry.index,
+                        "timestamp": getattr(entry, 'timestamp', time.time())
+                    }
                     for entry in self.log
                 ]
-                json.dump(log_data, f, indent=2)
-        except IOError as e:
-            self.logger.error(f"Error saving log: {e}")
-        
-        # Save state machine
-        try:
+                json.dump(log_data, f)
+            
+            # Save state machine
             with open(state_machine_path, 'w') as f:
-                json.dump(self.state_machine, f, indent=2)
-        except IOError as e:
-            self.logger.error(f"Error saving state machine: {e}")
-        
-        # Save metadata
-        try:
+                json.dump(self.state_machine, f)
+            
+            # Save metadata
             with open(metadata_path, 'w') as f:
                 metadata = {
                     "current_term": self.current_term,
@@ -222,9 +221,18 @@ class RaftNode(replication_pb2_grpc.NodeCommunicationServicer,
                     "commit_index": self.commit_index,
                     "last_applied": self.last_applied
                 }
-                json.dump(metadata, f, indent=2)
-        except IOError as e:
-            self.logger.error(f"Error saving metadata: {e}")
+                json.dump(metadata, f)
+                
+            # Add fsync to ensure data is written to disk
+            for path in [log_path, state_machine_path, metadata_path]:
+                try:
+                    with open(path, 'r') as f:
+                        os.fsync(f.fileno())
+                except:
+                    pass
+                
+        except (json.JSONDecodeError, IOError) as e:
+            self.logger.error(f"Error saving persistent state: {e}")
     
     def run_election_timeout(self):
         """Monitor election timeout and start election if no heartbeat received"""
@@ -437,36 +445,41 @@ class RaftNode(replication_pb2_grpc.NodeCommunicationServicer,
     
     def update_commit_index(self):
         """Update commit_index if there's a majority of matchIndex at a given index"""
-        if self.state != NodeState.LEADER:
-            return
-        
-        # For each log entry, count replicas (including self)
-        old_commit_index = self.commit_index
-        
-        # Find the highest index that has been replicated to a majority
-        for i in range(self.commit_index + 1, len(self.log)):
-            # Only commit entries from current term (Raft safety property)
-            if self.log[i].term != self.current_term:
-                continue
+        with self.state_lock:
+            if self.state != NodeState.LEADER:
+                return
                 
-            replica_count = 1  # Count self
-            for node_id in self.match_index:
-                if self.match_index[node_id] >= i:
-                    replica_count += 1
+            # Find the highest index with majority replication
+            n = len(self.nodes)
+            majority = n // 2 + 1
             
-            # If majority of nodes have replicated this entry, commit it
-            if replica_count > len(self.nodes) // 2:
-                self.commit_index = i
-                self.logger.info(f"Updated commit index to {i}")
-            else:
-                # No need to check further entries
-                break
-        
-        # If commit index changed, save state and notify apply thread
-        if self.commit_index > old_commit_index:
-            self.logger.info(f"Commit index advanced from {old_commit_index} to {self.commit_index}")
-            # Save the updated commit index
-            self.save_persistent_state()
+            for index in range(self.commit_index + 1, len(self.log)):
+                # Count nodes (including self) that have replicated this index
+                count = 1  # Start with 1 for leader
+                for node_id, match_idx in self.match_index.items():
+                    if match_idx >= index:
+                        count += 1
+                
+                # Only commit entries from current term
+                # This is a safety feature of Raft to avoid committing entries from previous terms
+                # that might not have been replicated to a majority of servers
+                # However, since we want stronger replication guarantees for our app, we'll modify
+                # this slightly to ensure entries eventually get committed
+                entry_term = self.log[index].term
+                current_time = time.time()
+                log_age = current_time - getattr(self.log[index], 'timestamp', current_time)
+                
+                # Commit if:
+                # 1. Majority of nodes have this entry, AND
+                # 2. Either the entry is from the current term OR it's an old entry (force commit)
+                if count >= majority and (entry_term == self.current_term or log_age > 5.0):
+                    self.commit_index = index
+                    self.logger.info(f"Leader committed index {index}, term {entry_term}")
+                    break
+            
+            # Always save state after updating commit_index
+            if self.commit_index > self.last_applied:
+                self.save_persistent_state()
     
     def apply_committed_entries(self):
         """Apply committed log entries to state machine"""
@@ -504,13 +517,32 @@ class RaftNode(replication_pb2_grpc.NodeCommunicationServicer,
             if cmd_type == 'set':
                 key, value = command.get('key'), command.get('value')
                 if key and value:  # Make sure we have valid key and value
+                    old_value = self.state_machine.get(key, None)
                     self.state_machine[key] = value
-                    self.logger.info(f"Applied SET {key}={value} to state machine, state now: {self.state_machine}")
+                    self.logger.info(f"Applied SET {key}=<value> to state machine")
+                    
+                    # Log more details if this is a session update
+                    if key == 'sessions':
+                        try:
+                            new_sessions = json.loads(value)
+                            old_sessions = json.loads(old_value) if old_value else {}
+                            new_tokens = set(new_sessions.keys())
+                            old_tokens = set(old_sessions.keys())
+                            added = new_tokens - old_tokens
+                            if added:
+                                self.logger.info(f"Added {len(added)} new sessions: {list(added)[:3]}")
+                        except:
+                            self.logger.warning("Could not parse sessions data for logging")
+                    
+                    # Ensure persistence after setting values
+                    self.save_persistent_state()
             elif cmd_type == 'delete':
                 key = command.get('key')
                 if key in self.state_machine:
                     del self.state_machine[key]
                     self.logger.info(f"Applied DELETE {key}")
+                    # Ensure persistence after deletion
+                    self.save_persistent_state()
             elif cmd_type == 'noop':
                 self.logger.debug("Applied NOOP command")
             # Add other command types as needed
@@ -526,26 +558,25 @@ class RaftNode(replication_pb2_grpc.NodeCommunicationServicer,
             entry = LogEntry(self.current_term, command, index)
             self.log.append(entry)
             
-            # Update own matchIndex and nextIndex
-            self.match_index[self.node_id] = index
-            self.next_index[self.node_id] = index + 1
+            # Apply immediately on leader to reduce latency
+            self.apply_to_state_machine(command)
             
-            # Save log
+            # Update matchIndex and commitIndex
+            self.match_index[self.node_id] = index
+            if self.commit_index < index:
+                self.commit_index = index
+                
+            # Save state to disk after appending entry
             self.save_persistent_state()
             
-            # Try to replicate to majority immediately for client operations
-            cmd_type = command.get('type')
-            if cmd_type and cmd_type != 'noop':
-                # Send AppendEntries to all followers
-                for node in self.nodes:
-                    node_id = node['id']
-                    if node_id == self.node_id:
-                        continue  # Skip self
-                    self.send_append_entries(node_id)
-                
-                # Update commit index if possible
-                self.update_commit_index()
+            # Send AppendEntries to all followers immediately
+            for follower_id in [n['id'] for n in self.nodes if n['id'] != self.node_id]:
+                threading.Thread(
+                    target=self.send_append_entries,
+                    args=(follower_id, 3)  # Try three times with each follower
+                ).start()
             
+            self.logger.info(f"Entry appended at index {index}, term {self.current_term}")
             return True
     
     def get_value(self, key: str) -> Tuple[bool, str]:

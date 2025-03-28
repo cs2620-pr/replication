@@ -266,6 +266,7 @@ class ChatWindow(QMainWindow):
         self.client.online_users_updated.connect(self.on_online_users_updated)
         self.client.unread_counts_updated.connect(self.on_unread_counts_updated)
         self.client.message_deleted.connect(self.on_message_deleted)
+        self.client.message_received.connect(self.on_message_received)
         
         # Instance variables
         self.current_chat_user_id = None
@@ -629,6 +630,9 @@ class ChatWindow(QMainWindow):
         success, message, messages = self.client.get_messages(user_id)
         
         if success:
+            # Sort messages by timestamp (oldest first)
+            messages.sort(key=lambda x: x.get('timestamp', 0))
+            
             for msg in messages:
                 self.add_message_bubble(
                     msg.get('message_id'),
@@ -723,8 +727,19 @@ class ChatWindow(QMainWindow):
     
     def on_message_deleted(self, message_id):
         """Handle message deletion event"""
+        # If we're viewing a chat, refresh it to reflect the deletion
         if self.current_chat_user_id:
-            self.load_chat_messages(self.current_chat_user_id)
+            self.check_current_chat_messages()
+    
+    def on_message_received(self, message_id, sender_id, content, timestamp):
+        """Handle received message event"""
+        # If this message is part of the current chat, add it to the display
+        if self.current_chat_user_id and (sender_id == self.current_chat_user_id or sender_id == self.client.user_id):
+            self.add_message_bubble(message_id, content, sender_id, timestamp)
+            # Scroll to bottom to show new message
+            self.scroll_area.verticalScrollBar().setValue(
+                self.scroll_area.verticalScrollBar().maximum()
+            )
     
     def closeEvent(self, event):
         """Handle window close event"""
@@ -745,4 +760,4 @@ def main():
     sys.exit(app.exec())
 
 if __name__ == "__main__":
-    main() 
+    main()
