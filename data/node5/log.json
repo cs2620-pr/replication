@@ -2716,5 +2716,28 @@
       "type": "noop"
     },
     "index": 383
+  },
+  {
+    "term": 1448,
+    "command": {
+      "type": "noop"
+    },
+    "index": 384
+  },
+  {
+    "term": 1448,
+    "command": {
+      "type": "set",
+      "key": "c",
+      "value": "3"
+    },
+    "index": 385
+  },
+  {
+    "term": 1495,
+    "command": {
+      "type": "noop"
+    },
+    "index": 386
   }
 ]

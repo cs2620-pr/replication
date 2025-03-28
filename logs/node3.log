@@ -1,456 +1,217 @@
-2025-03-27 23:48:53,021 - Node-3 - INFO - Initializing node 3
-2025-03-27 23:48:53,021 - Node-3 - INFO - Loaded 382 log entries from disk
-2025-03-27 23:48:53,021 - Node-3 - INFO - Loaded state machine with 12 items from disk
-2025-03-27 23:48:53,021 - Node-3 - INFO - Loaded metadata from disk: term=1299, commit_index=381, last_applied=381
-2025-03-27 23:48:53,021 - Node-3 - INFO - Initialized node 3 as FOLLOWER
-2025-03-27 23:48:53,027 - RaftServer - INFO - Raft server node 3 started on localhost:50053
-2025-03-27 23:48:53,040 - Node-3 - INFO - Granted vote to node 1 for term 1303
-2025-03-27 23:48:53,049 - Node-3 - INFO - Received 1 entries from leader
-2025-03-27 23:48:53,050 - Node-3 - INFO - Appended log entry at index 382: {'type': 'noop'}
-2025-03-27 23:48:53,051 - Node-3 - INFO - Updated commit index from 381 to 382
-2025-03-27 23:48:53,076 - Node-3 - INFO - Applying entries from index 382 to 382
-2025-03-27 23:48:54,277 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:48:54,290 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:48:56,292 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:48:56,304 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:48:58,312 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:48:58,327 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:48:59,160 - Node-3 - INFO - Granted vote to node 5 for term 1304
-2025-03-27 23:48:59,172 - Node-3 - INFO - Received 1 entries from leader
-2025-03-27 23:48:59,173 - Node-3 - INFO - Appended log entry at index 383: {'type': 'noop'}
-2025-03-27 23:48:59,174 - Node-3 - INFO - Updated commit index from 382 to 383
-2025-03-27 23:48:59,177 - Node-3 - INFO - Applying entries from index 383 to 383
-2025-03-27 23:49:00,327 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:00,336 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:02,346 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:02,365 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:04,362 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:04,374 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:06,375 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:06,382 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:08,384 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:08,396 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:10,396 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:10,406 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:12,413 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:12,431 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:14,437 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:14,449 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:16,449 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:16,456 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:18,465 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:18,477 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:20,479 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:20,491 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:22,490 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:22,501 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:24,503 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:24,514 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:26,512 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:26,521 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:28,531 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:28,547 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:30,545 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:30,555 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:32,560 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:32,567 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:34,570 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:34,581 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:36,579 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:36,587 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:38,590 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:38,599 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:40,602 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:40,615 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:42,617 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:42,624 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:44,627 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:44,634 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:46,641 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:46,651 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:48,648 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:48,656 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:50,661 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:50,669 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:52,678 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:52,697 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:54,696 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:54,706 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:56,709 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:56,717 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:49:58,722 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:49:58,729 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:00,729 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:00,736 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:02,741 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:02,748 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:04,749 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:04,760 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:06,765 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:06,783 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:08,784 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:08,796 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:10,801 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:10,809 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:12,819 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:12,841 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:14,843 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:14,858 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:16,864 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:16,878 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:18,882 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:18,899 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:20,895 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:20,909 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:22,910 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:22,921 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:24,923 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:24,937 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:26,943 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:26,959 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:28,957 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:28,964 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:30,968 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:30,983 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:32,987 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:33,002 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:35,000 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:35,011 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:35,323 - Node-3 - INFO - GET request for key '__leader_check__', state machine has keys: ['color', 'fruit', 'status', '_find_leader', 'temperature', 'car', 'phone', 'horse', 'money', 'ppl', 'a', 'b']
-2025-03-27 23:50:35,325 - Node-3 - INFO - GET request for key 'a', state machine has keys: ['color', 'fruit', 'status', '_find_leader', 'temperature', 'car', 'phone', 'horse', 'money', 'ppl', 'a', 'b']
-2025-03-27 23:50:37,012 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:37,020 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:39,025 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:39,039 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:41,036 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:41,046 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:43,050 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:43,057 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:45,059 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:45,067 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:47,074 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:47,083 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:49,083 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:49,089 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:51,091 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:51,097 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:53,099 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:53,104 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:55,113 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:55,121 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:57,140 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:57,146 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:50:59,150 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:50:59,155 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:01,166 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:01,179 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:03,180 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:03,186 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:05,187 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:05,196 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:07,201 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:07,212 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:09,214 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:09,219 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:11,223 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:11,231 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:13,231 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:13,236 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:14,829 - Node-3 - INFO - Starting election for term 1305
-2025-03-27 23:51:15,241 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:51:15,247 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:15,409 - Node-3 - INFO - Starting election for term 1306
-2025-03-27 23:51:15,936 - Node-3 - INFO - Starting election for term 1307
-2025-03-27 23:51:16,164 - Node-3 - INFO - Starting election for term 1308
-2025-03-27 23:51:16,423 - Node-3 - INFO - Granted vote to node 4 for term 1309
-2025-03-27 23:51:16,703 - Node-3 - INFO - Granted vote to node 4 for term 1310
-2025-03-27 23:51:16,877 - Node-3 - INFO - Granted vote to node 4 for term 1311
-2025-03-27 23:51:17,150 - Node-3 - INFO - Granted vote to node 4 for term 1312
-2025-03-27 23:51:17,249 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:17,252 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.FOLLOWER
-2025-03-27 23:51:17,259 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:17,478 - Node-3 - INFO - Granted vote to node 4 for term 1313
-2025-03-27 23:51:17,760 - Node-3 - INFO - Granted vote to node 4 for term 1314
-2025-03-27 23:51:18,035 - Node-3 - INFO - Granted vote to node 4 for term 1315
-2025-03-27 23:51:18,291 - Node-3 - INFO - Granted vote to node 4 for term 1316
-2025-03-27 23:51:18,617 - Node-3 - INFO - Granted vote to node 4 for term 1317
-2025-03-27 23:51:18,899 - Node-3 - INFO - Granted vote to node 4 for term 1318
-2025-03-27 23:51:19,087 - Node-3 - INFO - Granted vote to node 4 for term 1319
-2025-03-27 23:51:19,263 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:19,294 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.FOLLOWER
-2025-03-27 23:51:19,305 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:19,360 - Node-3 - INFO - Granted vote to node 4 for term 1320
-2025-03-27 23:51:19,586 - Node-3 - INFO - Granted vote to node 4 for term 1321
-2025-03-27 23:51:19,755 - Node-3 - INFO - Granted vote to node 4 for term 1322
-2025-03-27 23:51:20,063 - Node-3 - INFO - Starting election for term 1323
-2025-03-27 23:51:20,105 - Node-3 - INFO - GET request for key 'a', state machine has keys: ['color', 'fruit', 'status', '_find_leader', 'temperature', 'car', 'phone', 'horse', 'money', 'ppl', 'a', 'b']
-2025-03-27 23:51:20,295 - Node-3 - INFO - Starting election for term 1324
-2025-03-27 23:51:20,576 - Node-3 - INFO - Starting election for term 1325
-2025-03-27 23:51:20,799 - Node-3 - INFO - Starting election for term 1326
-2025-03-27 23:51:21,088 - Node-3 - INFO - Granted vote to node 4 for term 1327
-2025-03-27 23:51:21,316 - Node-3 - INFO - Granted vote to node 4 for term 1328
-2025-03-27 23:51:21,317 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:21,322 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.FOLLOWER
-2025-03-27 23:51:21,328 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:21,614 - Node-3 - INFO - Starting election for term 1329
-2025-03-27 23:51:21,890 - Node-3 - INFO - Starting election for term 1330
-2025-03-27 23:51:22,225 - Node-3 - INFO - Starting election for term 1331
-2025-03-27 23:51:22,374 - Node-3 - INFO - GET request for key 'a', state machine has keys: ['color', 'fruit', 'status', '_find_leader', 'temperature', 'car', 'phone', 'horse', 'money', 'ppl', 'a', 'b']
-2025-03-27 23:51:22,810 - Node-3 - INFO - Starting election for term 1332
-2025-03-27 23:51:23,340 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:51:23,354 - Node-3 - INFO - Granted vote to node 4 for term 1333
-2025-03-27 23:51:23,361 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.FOLLOWER
-2025-03-27 23:51:23,367 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:23,636 - Node-3 - INFO - Granted vote to node 4 for term 1334
-2025-03-27 23:51:23,922 - Node-3 - INFO - Starting election for term 1335
-2025-03-27 23:51:24,209 - Node-3 - INFO - Starting election for term 1336
-2025-03-27 23:51:24,543 - Node-3 - INFO - Starting election for term 1337
-2025-03-27 23:51:25,072 - Node-3 - INFO - Starting election for term 1338
-2025-03-27 23:51:25,379 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:51:25,384 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.CANDIDATE
-2025-03-27 23:51:25,390 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:25,590 - Node-3 - INFO - Starting election for term 1339
-2025-03-27 23:51:25,769 - Node-3 - INFO - Starting election for term 1340
-2025-03-27 23:51:26,049 - Node-3 - INFO - Starting election for term 1341
-2025-03-27 23:51:26,335 - Node-3 - INFO - Starting election for term 1342
-2025-03-27 23:51:26,873 - Node-3 - INFO - Granted vote to node 4 for term 1343
-2025-03-27 23:51:27,098 - Node-3 - INFO - Granted vote to node 4 for term 1344
-2025-03-27 23:51:27,392 - Node-3 - INFO - Starting election for term 1345
-2025-03-27 23:51:27,402 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:51:27,407 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.CANDIDATE
-2025-03-27 23:51:27,413 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:27,615 - Node-3 - INFO - Starting election for term 1346
-2025-03-27 23:51:27,943 - Node-3 - INFO - Starting election for term 1347
-2025-03-27 23:51:28,432 - Node-3 - INFO - Granted vote to node 4 for term 1348
-2025-03-27 23:51:28,682 - Node-3 - INFO - Starting election for term 1349
-2025-03-27 23:51:28,911 - Node-3 - INFO - Starting election for term 1350
-2025-03-27 23:51:29,147 - Node-3 - INFO - Starting election for term 1351
-2025-03-27 23:51:29,424 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:51:29,431 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.CANDIDATE
-2025-03-27 23:51:29,439 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:29,455 - Node-3 - INFO - Granted vote to node 4 for term 1352
-2025-03-27 23:51:29,735 - Node-3 - INFO - Granted vote to node 4 for term 1353
-2025-03-27 23:51:30,015 - Node-3 - INFO - Granted vote to node 4 for term 1354
-2025-03-27 23:51:30,293 - Node-3 - INFO - Granted vote to node 4 for term 1355
-2025-03-27 23:51:30,516 - Node-3 - INFO - Granted vote to node 4 for term 1356
-2025-03-27 23:51:30,741 - Node-3 - INFO - Granted vote to node 4 for term 1357
-2025-03-27 23:51:30,979 - Node-3 - INFO - Granted vote to node 4 for term 1358
-2025-03-27 23:51:31,159 - Node-3 - INFO - Granted vote to node 4 for term 1359
-2025-03-27 23:51:31,441 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:31,444 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.FOLLOWER
-2025-03-27 23:51:31,449 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:31,465 - Node-3 - INFO - Starting election for term 1360
-2025-03-27 23:51:31,788 - Node-3 - INFO - Starting election for term 1361
-2025-03-27 23:51:31,961 - Node-3 - INFO - Starting election for term 1362
-2025-03-27 23:51:32,193 - Node-3 - INFO - Starting election for term 1363
-2025-03-27 23:51:32,426 - Node-3 - INFO - Starting election for term 1364
-2025-03-27 23:51:32,649 - Node-3 - INFO - Starting election for term 1365
-2025-03-27 23:51:32,940 - Node-3 - INFO - Starting election for term 1366
-2025-03-27 23:51:33,173 - Node-3 - INFO - Starting election for term 1367
-2025-03-27 23:51:33,455 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:51:33,462 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.CANDIDATE
-2025-03-27 23:51:33,471 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:33,509 - Node-3 - INFO - Starting election for term 1368
-2025-03-27 23:51:33,735 - Node-3 - INFO - Starting election for term 1369
-2025-03-27 23:51:34,070 - Node-3 - INFO - Starting election for term 1370
-2025-03-27 23:51:34,653 - Node-3 - INFO - Starting election for term 1371
-2025-03-27 23:51:35,236 - Node-3 - INFO - Granted vote to node 4 for term 1372
-2025-03-27 23:51:35,479 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:35,485 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.FOLLOWER
-2025-03-27 23:51:35,491 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:35,555 - Node-3 - INFO - Starting election for term 1373
-2025-03-27 23:51:36,088 - Node-3 - INFO - Granted vote to node 4 for term 1374
-2025-03-27 23:51:36,402 - Node-3 - INFO - Starting election for term 1375
-2025-03-27 23:51:36,678 - Node-3 - INFO - Starting election for term 1376
-2025-03-27 23:51:36,999 - Node-3 - INFO - Granted vote to node 4 for term 1377
-2025-03-27 23:51:37,231 - Node-3 - INFO - Granted vote to node 4 for term 1378
-2025-03-27 23:51:37,502 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:37,514 - Node-3 - INFO - Granted vote to node 4 for term 1379
-2025-03-27 23:51:37,520 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.FOLLOWER
-2025-03-27 23:51:37,526 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:37,803 - Node-3 - INFO - Granted vote to node 4 for term 1380
-2025-03-27 23:51:38,084 - Node-3 - INFO - Granted vote to node 4 for term 1381
-2025-03-27 23:51:38,425 - Node-3 - INFO - Granted vote to node 4 for term 1382
-2025-03-27 23:51:38,652 - Node-3 - INFO - Granted vote to node 4 for term 1383
-2025-03-27 23:51:38,958 - Node-3 - INFO - Starting election for term 1384
-2025-03-27 23:51:39,196 - Node-3 - INFO - Starting election for term 1385
-2025-03-27 23:51:39,487 - Node-3 - INFO - Starting election for term 1386
-2025-03-27 23:51:39,534 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:51:39,540 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.CANDIDATE
-2025-03-27 23:51:39,547 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:39,666 - Node-3 - INFO - Starting election for term 1387
-2025-03-27 23:51:39,948 - Node-3 - INFO - Starting election for term 1388
-2025-03-27 23:51:40,170 - Node-3 - INFO - Starting election for term 1389
-2025-03-27 23:51:40,480 - Node-3 - INFO - Granted vote to node 4 for term 1390
-2025-03-27 23:51:40,662 - Node-3 - INFO - Granted vote to node 4 for term 1391
-2025-03-27 23:51:40,884 - Node-3 - INFO - Granted vote to node 4 for term 1392
-2025-03-27 23:51:41,117 - Node-3 - INFO - Granted vote to node 4 for term 1393
-2025-03-27 23:51:41,398 - Node-3 - INFO - Granted vote to node 4 for term 1394
-2025-03-27 23:51:41,555 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:41,559 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.FOLLOWER
-2025-03-27 23:51:41,565 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:41,680 - Node-3 - INFO - Granted vote to node 4 for term 1395
-2025-03-27 23:51:41,967 - Node-3 - INFO - Granted vote to node 4 for term 1396
-2025-03-27 23:51:42,135 - Node-3 - INFO - Granted vote to node 4 for term 1397
-2025-03-27 23:51:42,314 - Node-3 - INFO - Granted vote to node 4 for term 1398
-2025-03-27 23:51:42,544 - Node-3 - INFO - Granted vote to node 4 for term 1399
-2025-03-27 23:51:42,787 - Node-3 - INFO - Granted vote to node 4 for term 1400
-2025-03-27 23:51:43,076 - Node-3 - INFO - Granted vote to node 4 for term 1401
-2025-03-27 23:51:43,366 - Node-3 - INFO - Granted vote to node 4 for term 1402
-2025-03-27 23:51:43,570 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:43,578 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.FOLLOWER
-2025-03-27 23:51:43,597 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:43,648 - Node-3 - INFO - Granted vote to node 4 for term 1403
-2025-03-27 23:51:43,932 - Node-3 - INFO - Granted vote to node 4 for term 1404
-2025-03-27 23:51:44,209 - Node-3 - INFO - Granted vote to node 4 for term 1405
-2025-03-27 23:51:44,523 - Node-3 - INFO - Starting election for term 1406
-2025-03-27 23:51:44,808 - Node-3 - INFO - Starting election for term 1407
-2025-03-27 23:51:45,142 - Node-3 - INFO - Granted vote to node 4 for term 1408
-2025-03-27 23:51:45,458 - Node-3 - INFO - Starting election for term 1409
-2025-03-27 23:51:45,765 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:51:45,773 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.CANDIDATE
-2025-03-27 23:51:45,781 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:45,923 - Node-3 - INFO - Starting election for term 1410
-2025-03-27 23:51:46,150 - Node-3 - INFO - Starting election for term 1411
-2025-03-27 23:51:46,435 - Node-3 - INFO - Starting election for term 1412
-2025-03-27 23:51:46,710 - Node-3 - INFO - Starting election for term 1413
-2025-03-27 23:51:46,999 - Node-3 - INFO - Starting election for term 1414
-2025-03-27 23:51:47,282 - Node-3 - INFO - Starting election for term 1415
-2025-03-27 23:51:47,461 - Node-3 - INFO - Starting election for term 1416
-2025-03-27 23:51:47,778 - Node-3 - INFO - Granted vote to node 4 for term 1417
-2025-03-27 23:51:47,784 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:47,789 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.FOLLOWER
-2025-03-27 23:51:47,796 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:48,054 - Node-3 - INFO - Granted vote to node 4 for term 1418
-2025-03-27 23:51:48,293 - Node-3 - INFO - Granted vote to node 4 for term 1419
-2025-03-27 23:51:48,581 - Node-3 - INFO - Granted vote to node 4 for term 1420
-2025-03-27 23:51:48,869 - Node-3 - INFO - Granted vote to node 4 for term 1421
-2025-03-27 23:51:49,101 - Node-3 - INFO - Granted vote to node 4 for term 1422
-2025-03-27 23:51:49,382 - Node-3 - INFO - Granted vote to node 4 for term 1423
-2025-03-27 23:51:49,709 - Node-3 - INFO - Starting election for term 1424
-2025-03-27 23:51:50,015 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:51:50,053 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.CANDIDATE
-2025-03-27 23:51:50,067 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:50,285 - Node-3 - INFO - Starting election for term 1425
-2025-03-27 23:51:50,803 - Node-3 - INFO - Starting election for term 1426
-2025-03-27 23:51:51,035 - Node-3 - INFO - Starting election for term 1427
-2025-03-27 23:51:51,298 - Node-3 - INFO - Granted vote to node 4 for term 1428
-2025-03-27 23:51:51,520 - Node-3 - INFO - Granted vote to node 4 for term 1429
-2025-03-27 23:51:51,758 - Node-3 - INFO - Starting election for term 1430
-2025-03-27 23:51:52,045 - Node-3 - INFO - Starting election for term 1431
-2025-03-27 23:51:52,071 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:51:52,077 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.CANDIDATE
-2025-03-27 23:51:52,085 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:52,324 - Node-3 - INFO - Starting election for term 1432
-2025-03-27 23:51:52,506 - Node-3 - INFO - Starting election for term 1433
-2025-03-27 23:51:52,737 - Node-3 - INFO - Starting election for term 1434
-2025-03-27 23:51:53,027 - Node-3 - INFO - Starting election for term 1435
-2025-03-27 23:51:53,254 - Node-3 - INFO - Starting election for term 1436
-2025-03-27 23:51:53,492 - Node-3 - INFO - Starting election for term 1437
-2025-03-27 23:51:53,780 - Node-3 - INFO - Starting election for term 1438
-2025-03-27 23:51:54,089 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:51:54,103 - Node-3 - INFO - Granted vote to node 4 for term 1439
-2025-03-27 23:51:54,110 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.FOLLOWER
-2025-03-27 23:51:54,116 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:54,328 - Node-3 - INFO - Granted vote to node 4 for term 1440
-2025-03-27 23:51:54,650 - Node-3 - INFO - Starting election for term 1441
-2025-03-27 23:51:55,226 - Node-3 - INFO - Starting election for term 1442
-2025-03-27 23:51:55,404 - Node-3 - INFO - Starting election for term 1443
-2025-03-27 23:51:55,685 - Node-3 - INFO - Starting election for term 1444
-2025-03-27 23:51:55,910 - Node-3 - INFO - Starting election for term 1445
-2025-03-27 23:51:56,126 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:51:56,134 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.CANDIDATE
-2025-03-27 23:51:56,142 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:56,196 - Node-3 - INFO - Starting election for term 1446
-2025-03-27 23:51:56,530 - Node-3 - INFO - Starting election for term 1447
-2025-03-27 23:51:56,858 - Node-3 - INFO - Granted vote to node 2 for term 1448
-2025-03-27 23:51:56,873 - Node-3 - INFO - Received 1 entries from leader
-2025-03-27 23:51:56,873 - Node-3 - INFO - Appended log entry at index 384: {'type': 'noop'}
-2025-03-27 23:51:56,937 - Node-3 - INFO - Updated commit index from 383 to 384
-2025-03-27 23:51:56,947 - Node-3 - INFO - Applying entries from index 384 to 384
-2025-03-27 23:51:58,147 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:51:58,162 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:51:59,887 - Node-3 - INFO - Received 1 entries from leader
-2025-03-27 23:51:59,887 - Node-3 - INFO - Appended log entry at index 385: {'type': 'set', 'key': 'c', 'value': '3'}
-2025-03-27 23:51:59,903 - Node-3 - INFO - Updated commit index from 384 to 385
-2025-03-27 23:51:59,936 - Node-3 - INFO - Applying entries from index 385 to 385
-2025-03-27 23:51:59,936 - Node-3 - INFO - Applied SET c=3 to state machine, state now: {'color': 'blue', 'fruit': 'apple', 'status': 'after_leader_failure', '_find_leader': 'ping', 'temperature': '25', 'car': 'volks', 'phone': 'apple', 'horse': 'people', 'money': 'dollar', 'ppl': 'rich', 'a': '2', 'b': '3', 'c': '3'}
-2025-03-27 23:52:00,155 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:52:00,169 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:52:02,172 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:52:02,197 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:52:04,187 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:52:04,197 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:52:06,199 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:52:06,211 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:52:08,216 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:52:08,228 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:52:10,226 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:52:10,233 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:52:11,591 - Node-3 - INFO - Granted vote to node 4 for term 1449
-2025-03-27 23:52:11,856 - Node-3 - INFO - Starting election for term 1450
-2025-03-27 23:52:12,085 - Node-3 - INFO - Starting election for term 1451
-2025-03-27 23:52:12,236 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:52:12,246 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:52:12,353 - Node-3 - INFO - Granted vote to node 4 for term 1452
-2025-03-27 23:52:12,629 - Node-3 - INFO - Starting election for term 1453
-2025-03-27 23:52:12,903 - Node-3 - INFO - Starting election for term 1454
-2025-03-27 23:52:13,133 - Node-3 - INFO - Starting election for term 1455
-2025-03-27 23:52:13,367 - Node-3 - INFO - Starting election for term 1456
-2025-03-27 23:52:13,433 - Node-3 - INFO - GET request for key '__leader_check__', state machine has keys: ['color', 'fruit', 'status', '_find_leader', 'temperature', 'car', 'phone', 'horse', 'money', 'ppl', 'a', 'b', 'c']
-2025-03-27 23:52:13,435 - Node-3 - INFO - GET request for key 'c', state machine has keys: ['color', 'fruit', 'status', '_find_leader', 'temperature', 'car', 'phone', 'horse', 'money', 'ppl', 'a', 'b', 'c']
-2025-03-27 23:52:13,706 - Node-3 - INFO - Starting election for term 1457
-2025-03-27 23:52:14,226 - Node-3 - INFO - Starting election for term 1458
-2025-03-27 23:52:14,535 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:52:14,543 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.CANDIDATE
-2025-03-27 23:52:14,552 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:52:14,695 - Node-3 - INFO - Starting election for term 1459
-2025-03-27 23:52:14,921 - Node-3 - INFO - Starting election for term 1460
-2025-03-27 23:52:15,443 - Node-3 - INFO - Granted vote to node 4 for term 1461
-2025-03-27 23:52:15,677 - Node-3 - INFO - Granted vote to node 4 for term 1462
-2025-03-27 23:52:15,967 - Node-3 - INFO - Starting election for term 1463
-2025-03-27 23:52:16,194 - Node-3 - INFO - Starting election for term 1464
-2025-03-27 23:52:16,474 - Node-3 - INFO - Starting election for term 1465
-2025-03-27 23:52:16,559 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:52:16,563 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.CANDIDATE
-2025-03-27 23:52:16,569 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:52:16,745 - Node-3 - INFO - Starting election for term 1466
-2025-03-27 23:52:17,075 - Node-3 - INFO - Starting election for term 1467
-2025-03-27 23:52:17,564 - Node-3 - INFO - Granted vote to node 4 for term 1468
-2025-03-27 23:52:17,794 - Node-3 - INFO - Granted vote to node 4 for term 1469
-2025-03-27 23:52:18,030 - Node-3 - INFO - Granted vote to node 4 for term 1470
-2025-03-27 23:52:18,302 - Node-3 - INFO - Starting election for term 1471
-2025-03-27 23:52:18,608 - Node-3 - INFO - Node status requested, reporting state: NodeState.CANDIDATE
-2025-03-27 23:52:18,614 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.CANDIDATE
-2025-03-27 23:52:18,625 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:52:18,823 - Node-3 - INFO - Starting election for term 1472
-2025-03-27 23:52:19,057 - Node-3 - INFO - Starting election for term 1473
-2025-03-27 23:52:19,316 - Node-3 - INFO - Granted vote to node 4 for term 1474
-2025-03-27 23:52:19,594 - Node-3 - INFO - Granted vote to node 4 for term 1475
-2025-03-27 23:52:19,819 - Node-3 - INFO - Granted vote to node 4 for term 1476
-2025-03-27 23:52:20,092 - Node-3 - INFO - Granted vote to node 4 for term 1477
-2025-03-27 23:52:20,314 - Node-3 - INFO - Granted vote to node 4 for term 1478
-2025-03-27 23:52:20,586 - Node-3 - INFO - Granted vote to node 4 for term 1479
-2025-03-27 23:52:20,626 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:52:20,631 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.FOLLOWER
-2025-03-27 23:52:20,637 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:52:20,817 - Node-3 - INFO - Granted vote to node 4 for term 1480
-2025-03-27 23:52:21,040 - Node-3 - INFO - Granted vote to node 4 for term 1481
-2025-03-27 23:52:21,264 - Node-3 - INFO - Granted vote to node 4 for term 1482
-2025-03-27 23:52:21,486 - Node-3 - INFO - Granted vote to node 4 for term 1483
-2025-03-27 23:52:21,708 - Node-3 - INFO - Granted vote to node 4 for term 1484
-2025-03-27 23:52:21,981 - Node-3 - INFO - Granted vote to node 4 for term 1485
-2025-03-27 23:52:22,257 - Node-3 - INFO - Granted vote to node 4 for term 1486
-2025-03-27 23:52:22,479 - Node-3 - INFO - Granted vote to node 4 for term 1487
-2025-03-27 23:52:22,641 - Node-3 - INFO - Node status requested, reporting state: NodeState.FOLLOWER
-2025-03-27 23:52:22,647 - Node-3 - WARNING - Cluster status requested but node is not leader, state: NodeState.FOLLOWER
-2025-03-27 23:52:22,654 - Node-3 - INFO - Health check requested, reporting status: 1
-2025-03-27 23:52:22,704 - Node-3 - INFO - Granted vote to node 4 for term 1488
-2025-03-27 23:52:22,982 - Node-3 - INFO - Granted vote to node 4 for term 1489
-2025-03-27 23:52:23,205 - Node-3 - INFO - Granted vote to node 4 for term 1490
-2025-03-27 23:52:23,438 - Node-3 - INFO - Granted vote to node 4 for term 1491
-2025-03-27 23:52:23,676 - Node-3 - INFO - Granted vote to node 4 for term 1492
-2025-03-27 23:52:23,953 - Node-3 - INFO - Granted vote to node 4 for term 1493
-2025-03-27 23:52:24,241 - Node-3 - INFO - Granted vote to node 4 for term 1494
-2025-03-27 23:52:24,243 - RaftServer - INFO - Shutting down node 3...
-2025-03-27 23:52:24,244 - RaftServer - INFO - Shutting down node 3...
+2025-03-28 01:06:09,420 - Node-3 - INFO - Initializing node 3
+2025-03-28 01:06:09,420 - Node-3 - INFO - Loaded 386 log entries from disk
+2025-03-28 01:06:09,420 - Node-3 - INFO - Loaded state machine with 13 items from disk
+2025-03-28 01:06:09,420 - Node-3 - INFO - Loaded metadata from disk: term=1494, commit_index=385, last_applied=385
+2025-03-28 01:06:09,421 - Node-3 - INFO - Initialized node 3 as FOLLOWER
+2025-03-28 01:06:09,427 - RaftServer - INFO - Raft server node 3 started on localhost:50053
+2025-03-28 01:06:09,584 - Node-3 - INFO - Starting election for term 1495
+2025-03-28 01:06:09,599 - Node-3 - INFO - Became LEADER for term 1495
+2025-03-28 01:06:09,601 - Node-3 - INFO - No-op entry successfully appended to log, leadership established
+2025-03-28 01:06:09,601 - Node-3 - INFO - Sending 1 entries to node 1 starting at index 386
+2025-03-28 01:06:09,602 - Node-3 - INFO - AppendEntries failed to node 1, decremented nextIndex from 386 to 385
+2025-03-28 01:06:09,602 - Node-3 - INFO - Sending 2 entries to node 1 starting at index 385
+2025-03-28 01:06:09,602 - Node-3 - INFO - AppendEntries failed to node 1, decremented nextIndex from 385 to 384
+2025-03-28 01:06:09,603 - Node-3 - INFO - Sending 3 entries to node 1 starting at index 384
+2025-03-28 01:06:09,603 - Node-3 - INFO - AppendEntries failed to node 1, decremented nextIndex from 384 to 383
+2025-03-28 01:06:09,603 - Node-3 - INFO - Sending 4 entries to node 1 starting at index 383
+2025-03-28 01:06:09,606 - Node-3 - INFO - AppendEntries successful to node 1, updated nextIndex to 387
+2025-03-28 01:06:09,606 - Node-3 - INFO - Updated commit index to 386
+2025-03-28 01:06:09,606 - Node-3 - INFO - Commit index advanced from 385 to 386
+2025-03-28 01:06:09,608 - Node-3 - INFO - Sending 1 entries to node 2 starting at index 386
+2025-03-28 01:06:09,610 - Node-3 - INFO - AppendEntries successful to node 2, updated nextIndex to 387
+2025-03-28 01:06:09,610 - Node-3 - INFO - Sending 1 entries to node 4 starting at index 386
+2025-03-28 01:06:09,611 - Node-3 - ERROR - Error sending AppendEntries to node 4: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50054: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50054: Failed to connect to remote host: Connection refused {grpc_status:14, created_time:"2025-03-28T01:06:09.611428-04:00"}"
+>
+2025-03-28 01:06:09,611 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:09,611 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {grpc_status:14, created_time:"2025-03-28T01:06:09.611893-04:00"}"
+>
+2025-03-28 01:06:09,653 - Node-3 - INFO - Applying entries from index 386 to 386
+2025-03-28 01:06:09,668 - Node-3 - INFO - Sending 1 entries to node 4 starting at index 386
+2025-03-28 01:06:09,668 - Node-3 - ERROR - Error sending AppendEntries to node 4: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50054: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50054: Failed to connect to remote host: Connection refused {created_time:"2025-03-28T01:06:09.668687-04:00", grpc_status:14}"
+>
+2025-03-28 01:06:09,668 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:09,669 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {created_time:"2025-03-28T01:06:09.669305-04:00", grpc_status:14}"
+>
+2025-03-28 01:06:09,725 - Node-3 - INFO - Sending 1 entries to node 4 starting at index 386
+2025-03-28 01:06:09,725 - Node-3 - ERROR - Error sending AppendEntries to node 4: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50054: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50054: Failed to connect to remote host: Connection refused {created_time:"2025-03-28T01:06:09.725633-04:00", grpc_status:14}"
+>
+2025-03-28 01:06:09,725 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:09,726 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {created_time:"2025-03-28T01:06:09.726295-04:00", grpc_status:14}"
+>
+2025-03-28 01:06:09,783 - Node-3 - INFO - Sending 1 entries to node 4 starting at index 386
+2025-03-28 01:06:09,784 - Node-3 - ERROR - Error sending AppendEntries to node 4: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50054: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50054: Failed to connect to remote host: Connection refused {grpc_status:14, created_time:"2025-03-28T01:06:09.784624-04:00"}"
+>
+2025-03-28 01:06:09,784 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:09,785 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {grpc_status:14, created_time:"2025-03-28T01:06:09.785412-04:00"}"
+>
+2025-03-28 01:06:09,838 - Node-3 - INFO - Sending 1 entries to node 4 starting at index 386
+2025-03-28 01:06:09,839 - Node-3 - ERROR - Error sending AppendEntries to node 4: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50054: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50054: Failed to connect to remote host: Connection refused {grpc_status:14, created_time:"2025-03-28T01:06:09.839425-04:00"}"
+>
+2025-03-28 01:06:09,839 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:09,840 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {grpc_status:14, created_time:"2025-03-28T01:06:09.840214-04:00"}"
+>
+2025-03-28 01:06:09,896 - Node-3 - INFO - Sending 1 entries to node 4 starting at index 386
+2025-03-28 01:06:09,897 - Node-3 - ERROR - Error sending AppendEntries to node 4: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50054: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50054: Failed to connect to remote host: Connection refused {created_time:"2025-03-28T01:06:09.896984-04:00", grpc_status:14}"
+>
+2025-03-28 01:06:09,897 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:09,897 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {grpc_status:14, created_time:"2025-03-28T01:06:09.897557-04:00"}"
+>
+2025-03-28 01:06:09,951 - Node-3 - INFO - Sending 1 entries to node 4 starting at index 386
+2025-03-28 01:06:09,958 - Node-3 - INFO - AppendEntries successful to node 4, updated nextIndex to 387
+2025-03-28 01:06:09,958 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:09,959 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {grpc_status:14, created_time:"2025-03-28T01:06:09.958911-04:00"}"
+>
+2025-03-28 01:06:10,013 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:10,014 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {created_time:"2025-03-28T01:06:10.01423-04:00", grpc_status:14}"
+>
+2025-03-28 01:06:10,069 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:10,070 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {created_time:"2025-03-28T01:06:10.070453-04:00", grpc_status:14}"
+>
+2025-03-28 01:06:10,129 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:10,129 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {grpc_status:14, created_time:"2025-03-28T01:06:10.129739-04:00"}"
+>
+2025-03-28 01:06:10,189 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:10,190 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {grpc_status:14, created_time:"2025-03-28T01:06:10.190382-04:00"}"
+>
+2025-03-28 01:06:10,244 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:10,245 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {created_time:"2025-03-28T01:06:10.245555-04:00", grpc_status:14}"
+>
+2025-03-28 01:06:10,302 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:10,303 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {created_time:"2025-03-28T01:06:10.303472-04:00", grpc_status:14}"
+>
+2025-03-28 01:06:10,362 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:10,362 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {created_time:"2025-03-28T01:06:10.362654-04:00", grpc_status:14}"
+>
+2025-03-28 01:06:10,416 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:10,416 - Node-3 - ERROR - Error sending AppendEntries to node 5: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.UNAVAILABLE
+	details = "failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused"
+	debug_error_string = "UNKNOWN:failed to connect to all addresses; last error: UNKNOWN: ipv4:127.0.0.1:50055: Failed to connect to remote host: Connection refused {grpc_status:14, created_time:"2025-03-28T01:06:10.416632-04:00"}"
+>
+2025-03-28 01:06:10,473 - Node-3 - INFO - Sending 1 entries to node 5 starting at index 386
+2025-03-28 01:06:10,477 - Node-3 - INFO - AppendEntries failed to node 5, decremented nextIndex from 386 to 385
+2025-03-28 01:06:10,477 - Node-3 - INFO - Sending 2 entries to node 5 starting at index 385
+2025-03-28 01:06:10,478 - Node-3 - INFO - AppendEntries failed to node 5, decremented nextIndex from 385 to 384
+2025-03-28 01:06:10,478 - Node-3 - INFO - Sending 3 entries to node 5 starting at index 384
+2025-03-28 01:06:10,481 - Node-3 - INFO - AppendEntries successful to node 5, updated nextIndex to 387
+2025-03-28 01:06:25,935 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:26,045 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:27,950 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:29,966 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:29,981 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:31,980 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:31,994 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:33,990 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:34,001 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:36,006 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:36,024 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:38,027 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:38,040 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:40,045 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:40,059 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:42,057 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:42,066 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:44,071 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:44,084 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:46,081 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:46,091 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:48,093 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:48,105 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:50,106 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:50,121 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:52,121 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:52,134 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:54,165 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:54,175 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:56,175 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:56,184 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:06:58,188 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:06:58,198 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:07:00,200 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:07:00,209 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:07:02,208 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:07:02,218 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:07:04,218 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:07:04,228 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:07:06,229 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:07:06,248 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:07:08,245 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:07:08,256 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:07:10,260 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:07:10,275 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:07:12,277 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:07:12,286 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:07:14,296 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:07:14,311 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:07:16,310 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:07:16,327 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:07:18,327 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:07:18,341 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:07:20,340 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:07:20,352 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:07:22,359 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:07:22,374 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:07:24,371 - Node-3 - INFO - Node status requested, reporting state: NodeState.LEADER
+2025-03-28 01:07:24,384 - Node-3 - INFO - Health check requested, reporting status: 1
+2025-03-28 01:07:26,435 - RaftServer - INFO - Shutting down node 3...
+2025-03-28 01:07:26,435 - RaftServer - INFO - Shutting down node 3...
