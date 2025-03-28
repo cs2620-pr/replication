@@ -56,6 +56,14 @@ This implementation provides 2+ fault tolerance by:
 
 ### Running a Cluster
 
+USE THIS TO RUN SERVERS:
+ 
+```
+python run_cluster.py --config config.json --nodes all --no-auto-restart
+```
+
+IGNORE THE BELOW:
+
 Start a cluster of servers:
 
 ```
@@ -68,7 +76,21 @@ To start specific nodes only:
 python run_cluster.py --config config.json --nodes 1,2,3
 ```
 
-### Using the Client
+
+### Running the Server Monitor
+ 
+```
+python raft_monitor.py
+```
+
+### Using the Full Raft Client
+
+```
+python full_raft_client.py
+```
+
+### IGNORE: Using the Client
+
 
 Set a key-value pair:
 
